@@ -1,0 +1,13 @@
+{
+	"name": "Deco Devtools",
+	"description": "A browser extension made with Svelte Kit",
+	"version": "1.0.0",
+	"manifest_version": 3,
+	"permissions": ["activeTab", "scripting", "http://*/", "https://*/"],
+	"host_permissions": ["<all_urls>"],
+	"action": {
+		"default_title": "Deco Devtools",
+		"default_icon": "favicon.png",
+		"default_popup": "popup.html"
+	}
+}
