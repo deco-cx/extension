@@ -1,6 +1,6 @@
-import browserAPI from "browser";
+import { browser } from "../deps.ts";
 
-const { storage } = browserAPI;
+const { storage } = browser.default;
 const KEY = "storage_key";
 
 interface Storage {

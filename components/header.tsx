@@ -1,5 +1,5 @@
 /* @jsx h */
-import { h } from "preact";
+import { h } from "../deps.ts";
 
 export default function Header(props: { title: string }) {
   return (

@@ -1,3 +1,105 @@
+var __defProp = Object.defineProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+
+// https://deno.land/x/bext@v0.1.2/mod.ts
+var mod_exports = {};
+__export(mod_exports, {
+  default: () => mod_default,
+  isBrowser: () => isBrowser,
+  isChrome: () => isChrome,
+  isDeno: () => isDeno,
+  isFirefox: () => isFirefox
+});
+
+// https://deno.land/x/bext@v0.1.2/utilities/predicates.ts
+var DENO = "DENO";
+var CHROME = "CHROME";
+var FIREFOX = "FIREFOX";
+function isBrowser(toCheck) {
+  let currentBrowser = CHROME;
+  try {
+    const userAgent = navigator?.userAgent || "";
+    if (/firefox/i.test(userAgent)) {
+      currentBrowser = FIREFOX;
+    } else if (/deno/i.test(userAgent)) {
+      currentBrowser = DENO;
+    }
+  } catch (_) {
+  }
+  if (!toCheck)
+    currentBrowser;
+  if (toCheck === CHROME && currentBrowser === CHROME)
+    return true;
+  if (toCheck === FIREFOX && currentBrowser === FIREFOX)
+    return true;
+  if (toCheck === DENO && currentBrowser === DENO)
+    return true;
+  return false;
+}
+function isChrome() {
+  return isBrowser(CHROME);
+}
+function isDeno() {
+  return isBrowser(DENO);
+}
+function isFirefox() {
+  return isBrowser(FIREFOX);
+}
+
+// https://deno.land/x/bext@v0.1.2/mock_browser/main.ts
+var listeners = {
+  addListener: () => {
+  },
+  removeListener: () => {
+  },
+  hasListener: () => {
+  }
+};
+var main_default = {
+  permissions: {
+    contains: () => {
+    },
+    request: () => {
+    }
+  },
+  runtime: {
+    onMessage: listeners,
+    openOptionsPage: () => {
+    },
+    lastError: {
+      message: ""
+    }
+  },
+  storage: {
+    sync: {
+      get: () => {
+      },
+      set: () => {
+      }
+    }
+  },
+  tabs: {
+    onUpdated: listeners,
+    query: () => {
+    },
+    sendMessage: () => {
+    }
+  }
+};
+
+// https://deno.land/x/bext@v0.1.2/mod.ts
+var browserAPI = globalThis.chrome;
+if (isFirefox()) {
+  browserAPI = globalThis.browser;
+}
+if (isDeno()) {
+  browserAPI = main_default;
+}
+var mod_default = browserAPI;
+
 // https://esm.sh/stable/preact@10.16.0/denonext/preact.development.mjs
 var n;
 var l;
@@ -63,17 +165,17 @@ function w(n2) {
   (!n2.__d && (n2.__d = true) && i.push(n2) && !x.__r++ || o !== l.debounceRendering) && ((o = l.debounceRendering) || r)(x);
 }
 function x() {
-  var n2, l22, u22, t22, o22, r22, e22, c22, s2;
+  var n2, l22, u22, t22, o22, r22, e22, c22, s22;
   for (i.sort(f); n2 = i.shift(); )
-    n2.__d && (l22 = i.length, t22 = void 0, o22 = void 0, r22 = void 0, c22 = (e22 = (u22 = n2).__v).__e, (s2 = u22.__P) && (t22 = [], o22 = [], (r22 = v({}, e22)).__v = e22.__v + 1, L(s2, e22, r22, u22.__n, void 0 !== s2.ownerSVGElement, null != e22.__h ? [c22] : null, t22, null == c22 ? g(e22) : c22, e22.__h, o22), M(t22, e22, o22), e22.__e != c22 && m(e22)), i.length > l22 && i.sort(f));
+    n2.__d && (l22 = i.length, t22 = void 0, o22 = void 0, r22 = void 0, c22 = (e22 = (u22 = n2).__v).__e, (s22 = u22.__P) && (t22 = [], o22 = [], (r22 = v({}, e22)).__v = e22.__v + 1, L(s22, e22, r22, u22.__n, void 0 !== s22.ownerSVGElement, null != e22.__h ? [c22] : null, t22, null == c22 ? g(e22) : c22, e22.__h, o22), M(t22, e22, o22), e22.__e != c22 && m(e22)), i.length > l22 && i.sort(f));
   x.__r = 0;
 }
 function P(n2, l22, u22, t22, i22, o22, r22, f22, e22, a22, v22) {
-  var p2, y2, _2, b22, g22, m22, w22, x2, P2, S2, H2 = 0, I2 = t22 && t22.__k || s, T22 = I2.length, j22 = T22, z22 = l22.length;
-  for (u22.__k = [], p2 = 0; p2 < z22; p2++)
-    null != (b22 = u22.__k[p2] = null == (b22 = l22[p2]) || "boolean" == typeof b22 || "function" == typeof b22 ? null : "string" == typeof b22 || "number" == typeof b22 || "bigint" == typeof b22 ? d(null, b22, null, null, b22) : h(b22) ? d(k, { children: b22 }, null, null, null) : b22.__b > 0 ? d(b22.type, b22.props, b22.key, b22.ref ? b22.ref : null, b22.__v) : b22) && (b22.__ = u22, b22.__b = u22.__b + 1, -1 === (x2 = A(b22, I2, w22 = p2 + H2, j22)) ? _2 = c : (_2 = I2[x2] || c, I2[x2] = void 0, j22--), L(n2, b22, _2, i22, o22, r22, f22, e22, a22, v22), g22 = b22.__e, (y2 = b22.ref) && _2.ref != y2 && (_2.ref && O(_2.ref, null, b22), v22.push(y2, b22.__c || g22, b22)), null != g22 && (null == m22 && (m22 = g22), S2 = !(P2 = _2 === c || null === _2.__v) && x2 === w22, P2 ? -1 == x2 && H2-- : x2 !== w22 && (x2 === w22 + 1 ? (H2++, S2 = true) : x2 > w22 ? j22 > z22 - w22 ? (H2 += x2 - w22, S2 = true) : H2-- : H2 = x2 < w22 && x2 == w22 - 1 ? x2 - w22 : 0), w22 = p2 + H2, S2 = S2 || x2 == p2 && !P2, "function" != typeof b22.type || x2 === w22 && _2.__k !== b22.__k ? "function" == typeof b22.type || S2 ? void 0 !== b22.__d ? (e22 = b22.__d, b22.__d = void 0) : e22 = g22.nextSibling : e22 = $(n2, g22, e22) : e22 = C(b22, e22, n2), "function" == typeof u22.type && (u22.__d = e22)));
-  for (u22.__e = m22, p2 = T22; p2--; )
-    null != I2[p2] && ("function" == typeof u22.type && null != I2[p2].__e && I2[p2].__e == u22.__d && (u22.__d = I2[p2].__e.nextSibling), q(I2[p2], I2[p2]));
+  var p22, y2, _2, b22, g22, m22, w22, x2, P2, S2, H2 = 0, I2 = t22 && t22.__k || s, T22 = I2.length, j22 = T22, z22 = l22.length;
+  for (u22.__k = [], p22 = 0; p22 < z22; p22++)
+    null != (b22 = u22.__k[p22] = null == (b22 = l22[p22]) || "boolean" == typeof b22 || "function" == typeof b22 ? null : "string" == typeof b22 || "number" == typeof b22 || "bigint" == typeof b22 ? d(null, b22, null, null, b22) : h(b22) ? d(k, { children: b22 }, null, null, null) : b22.__b > 0 ? d(b22.type, b22.props, b22.key, b22.ref ? b22.ref : null, b22.__v) : b22) && (b22.__ = u22, b22.__b = u22.__b + 1, -1 === (x2 = A(b22, I2, w22 = p22 + H2, j22)) ? _2 = c : (_2 = I2[x2] || c, I2[x2] = void 0, j22--), L(n2, b22, _2, i22, o22, r22, f22, e22, a22, v22), g22 = b22.__e, (y2 = b22.ref) && _2.ref != y2 && (_2.ref && O(_2.ref, null, b22), v22.push(y2, b22.__c || g22, b22)), null != g22 && (null == m22 && (m22 = g22), S2 = !(P2 = _2 === c || null === _2.__v) && x2 === w22, P2 ? -1 == x2 && H2-- : x2 !== w22 && (x2 === w22 + 1 ? (H2++, S2 = true) : x2 > w22 ? j22 > z22 - w22 ? (H2 += x2 - w22, S2 = true) : H2-- : H2 = x2 < w22 && x2 == w22 - 1 ? x2 - w22 : 0), w22 = p22 + H2, S2 = S2 || x2 == p22 && !P2, "function" != typeof b22.type || x2 === w22 && _2.__k !== b22.__k ? "function" == typeof b22.type || S2 ? void 0 !== b22.__d ? (e22 = b22.__d, b22.__d = void 0) : e22 = g22.nextSibling : e22 = $(n2, g22, e22) : e22 = C(b22, e22, n2), "function" == typeof u22.type && (u22.__d = e22)));
+  for (u22.__e = m22, p22 = T22; p22--; )
+    null != I2[p22] && ("function" == typeof u22.type && null != I2[p22].__e && I2[p22].__e == u22.__d && (u22.__d = I2[p22].__e.nextSibling), q(I2[p22], I2[p22]));
 }
 function C(n2, l22, u22) {
   for (var t22, i22 = n2.__k, o22 = 0; i22 && o22 < i22.length; o22++)
@@ -146,40 +248,40 @@ function j(n2) {
 function z(n2) {
   return this.l[n2.type + true](l.event ? l.event(n2) : n2);
 }
-function L(n2, u22, t22, i22, o22, r22, f22, e22, c22, s2) {
-  var a22, p2, y2, d22, _2, g22, m22, w22, x2, C2, S2, $2, A2, H2, I2, T22 = u22.type;
+function L(n2, u22, t22, i22, o22, r22, f22, e22, c22, s22) {
+  var a22, p22, y2, d22, _2, g22, m22, w22, x2, C2, S2, $2, A2, H2, I2, T22 = u22.type;
   if (void 0 !== u22.constructor)
     return null;
   null != t22.__h && (c22 = t22.__h, e22 = u22.__e = t22.__e, u22.__h = null, r22 = [e22]), (a22 = l.__b) && a22(u22);
   try {
     n:
       if ("function" == typeof T22) {
-        if (w22 = u22.props, x2 = (a22 = T22.contextType) && i22[a22.__c], C2 = a22 ? x2 ? x2.props.value : a22.__ : i22, t22.__c ? m22 = (p2 = u22.__c = t22.__c).__ = p2.__E : ("prototype" in T22 && T22.prototype.render ? u22.__c = p2 = new T22(w22, C2) : (u22.__c = p2 = new b(w22, C2), p2.constructor = T22, p2.render = B), x2 && x2.sub(p2), p2.props = w22, p2.state || (p2.state = {}), p2.context = C2, p2.__n = i22, y2 = p2.__d = true, p2.__h = [], p2._sb = []), null == p2.__s && (p2.__s = p2.state), null != T22.getDerivedStateFromProps && (p2.__s == p2.state && (p2.__s = v({}, p2.__s)), v(p2.__s, T22.getDerivedStateFromProps(w22, p2.__s))), d22 = p2.props, _2 = p2.state, p2.__v = u22, y2)
-          null == T22.getDerivedStateFromProps && null != p2.componentWillMount && p2.componentWillMount(), null != p2.componentDidMount && p2.__h.push(p2.componentDidMount);
+        if (w22 = u22.props, x2 = (a22 = T22.contextType) && i22[a22.__c], C2 = a22 ? x2 ? x2.props.value : a22.__ : i22, t22.__c ? m22 = (p22 = u22.__c = t22.__c).__ = p22.__E : ("prototype" in T22 && T22.prototype.render ? u22.__c = p22 = new T22(w22, C2) : (u22.__c = p22 = new b(w22, C2), p22.constructor = T22, p22.render = B), x2 && x2.sub(p22), p22.props = w22, p22.state || (p22.state = {}), p22.context = C2, p22.__n = i22, y2 = p22.__d = true, p22.__h = [], p22._sb = []), null == p22.__s && (p22.__s = p22.state), null != T22.getDerivedStateFromProps && (p22.__s == p22.state && (p22.__s = v({}, p22.__s)), v(p22.__s, T22.getDerivedStateFromProps(w22, p22.__s))), d22 = p22.props, _2 = p22.state, p22.__v = u22, y2)
+          null == T22.getDerivedStateFromProps && null != p22.componentWillMount && p22.componentWillMount(), null != p22.componentDidMount && p22.__h.push(p22.componentDidMount);
         else {
-          if (null == T22.getDerivedStateFromProps && w22 !== d22 && null != p2.componentWillReceiveProps && p2.componentWillReceiveProps(w22, C2), !p2.__e && (null != p2.shouldComponentUpdate && false === p2.shouldComponentUpdate(w22, p2.__s, C2) || u22.__v === t22.__v)) {
-            for (u22.__v !== t22.__v && (p2.props = w22, p2.state = p2.__s, p2.__d = false), u22.__e = t22.__e, u22.__k = t22.__k, u22.__k.forEach(function(n3) {
+          if (null == T22.getDerivedStateFromProps && w22 !== d22 && null != p22.componentWillReceiveProps && p22.componentWillReceiveProps(w22, C2), !p22.__e && (null != p22.shouldComponentUpdate && false === p22.shouldComponentUpdate(w22, p22.__s, C2) || u22.__v === t22.__v)) {
+            for (u22.__v !== t22.__v && (p22.props = w22, p22.state = p22.__s, p22.__d = false), u22.__e = t22.__e, u22.__k = t22.__k, u22.__k.forEach(function(n3) {
               n3 && (n3.__ = u22);
-            }), S2 = 0; S2 < p2._sb.length; S2++)
-              p2.__h.push(p2._sb[S2]);
-            p2._sb = [], p2.__h.length && f22.push(p2);
+            }), S2 = 0; S2 < p22._sb.length; S2++)
+              p22.__h.push(p22._sb[S2]);
+            p22._sb = [], p22.__h.length && f22.push(p22);
             break n;
           }
-          null != p2.componentWillUpdate && p2.componentWillUpdate(w22, p2.__s, C2), null != p2.componentDidUpdate && p2.__h.push(function() {
-            p2.componentDidUpdate(d22, _2, g22);
+          null != p22.componentWillUpdate && p22.componentWillUpdate(w22, p22.__s, C2), null != p22.componentDidUpdate && p22.__h.push(function() {
+            p22.componentDidUpdate(d22, _2, g22);
           });
         }
-        if (p2.context = C2, p2.props = w22, p2.__P = n2, p2.__e = false, $2 = l.__r, A2 = 0, "prototype" in T22 && T22.prototype.render) {
-          for (p2.state = p2.__s, p2.__d = false, $2 && $2(u22), a22 = p2.render(p2.props, p2.state, p2.context), H2 = 0; H2 < p2._sb.length; H2++)
-            p2.__h.push(p2._sb[H2]);
-          p2._sb = [];
+        if (p22.context = C2, p22.props = w22, p22.__P = n2, p22.__e = false, $2 = l.__r, A2 = 0, "prototype" in T22 && T22.prototype.render) {
+          for (p22.state = p22.__s, p22.__d = false, $2 && $2(u22), a22 = p22.render(p22.props, p22.state, p22.context), H2 = 0; H2 < p22._sb.length; H2++)
+            p22.__h.push(p22._sb[H2]);
+          p22._sb = [];
         } else
           do {
-            p2.__d = false, $2 && $2(u22), a22 = p2.render(p2.props, p2.state, p2.context), p2.state = p2.__s;
-          } while (p2.__d && ++A2 < 25);
-        p2.state = p2.__s, null != p2.getChildContext && (i22 = v(v({}, i22), p2.getChildContext())), y2 || null == p2.getSnapshotBeforeUpdate || (g22 = p2.getSnapshotBeforeUpdate(d22, _2)), P(n2, h(I2 = null != a22 && a22.type === k && null == a22.key ? a22.props.children : a22) ? I2 : [I2], u22, t22, i22, o22, r22, f22, e22, c22, s2), p2.base = u22.__e, u22.__h = null, p2.__h.length && f22.push(p2), m22 && (p2.__E = p2.__ = null);
+            p22.__d = false, $2 && $2(u22), a22 = p22.render(p22.props, p22.state, p22.context), p22.state = p22.__s;
+          } while (p22.__d && ++A2 < 25);
+        p22.state = p22.__s, null != p22.getChildContext && (i22 = v(v({}, i22), p22.getChildContext())), y2 || null == p22.getSnapshotBeforeUpdate || (g22 = p22.getSnapshotBeforeUpdate(d22, _2)), P(n2, h(I2 = null != a22 && a22.type === k && null == a22.key ? a22.props.children : a22) ? I2 : [I2], u22, t22, i22, o22, r22, f22, e22, c22, s22), p22.base = u22.__e, u22.__h = null, p22.__h.length && f22.push(p22), m22 && (p22.__E = p22.__ = null);
       } else
-        null == r22 && u22.__v === t22.__v ? (u22.__k = t22.__k, u22.__e = t22.__e) : u22.__e = N(t22.__e, u22, t22, i22, o22, r22, f22, c22, s2);
+        null == r22 && u22.__v === t22.__v ? (u22.__k = t22.__k, u22.__e = t22.__e) : u22.__e = N(t22.__e, u22, t22, i22, o22, r22, f22, c22, s22);
     (a22 = l.diffed) && a22(u22);
   } catch (n3) {
     u22.__v = null, (c22 || null != r22) && (u22.__e = e22, u22.__h = !!c22, r22[r22.indexOf(e22)] = null), l.__e(n3, u22, t22);
@@ -198,7 +300,7 @@ function M(n2, u22, t22) {
     }
   });
 }
-function N(l22, u22, t22, i22, o22, r22, f22, e22, s2) {
+function N(l22, u22, t22, i22, o22, r22, f22, e22, s22) {
   var a22, v22, y2, d22 = t22.props, _2 = u22.props, k22 = u22.type, b22 = 0;
   if ("svg" === k22 && (o22 = true), null != r22) {
     for (; b22 < r22.length; b22++)
@@ -223,7 +325,7 @@ function N(l22, u22, t22, i22, o22, r22, f22, e22, s2) {
     }
     if (H(l22, _2, d22, o22, e22), y2)
       u22.__k = [];
-    else if (P(l22, h(b22 = u22.props.children) ? b22 : [b22], u22, t22, i22, o22 && "foreignObject" !== k22, r22, f22, r22 ? r22[0] : t22.__k && g(t22, 0), e22, s2), null != r22)
+    else if (P(l22, h(b22 = u22.props.children) ? b22 : [b22], u22, t22, i22, o22 && "foreignObject" !== k22, r22, f22, r22 ? r22[0] : t22.__k && g(t22, 0), e22, s22), null != r22)
       for (b22 = r22.length; b22--; )
         null != r22[b22] && p(r22[b22]);
     e22 || ("value" in _2 && void 0 !== (b22 = _2.value) && (b22 !== l22.value || "progress" === k22 && !b22 || "option" === k22 && b22 !== d22.value) && T(l22, "value", b22, d22.value, false), "checked" in _2 && void 0 !== (b22 = _2.checked) && b22 !== l22.checked && T(l22, "checked", b22, d22.checked, false));
@@ -298,6 +400,49 @@ function d2(t22, u22) {
   l.__h && l.__h(r2, t22, o2 || u22), o2 = 0;
   var i22 = r2.__H || (r2.__H = { __: [], __h: [] });
   return t22 >= i22.__.length && i22.__.push({ __V: c2 }), i22.__[t22];
+}
+function h2(n2) {
+  return o2 = 1, s2(B2, n2);
+}
+function s2(n2, u22, i22) {
+  var o22 = d2(t2++, 2);
+  if (o22.t = n2, !o22.__c && (o22.__ = [i22 ? i22(u22) : B2(void 0, u22), function(n3) {
+    var t22 = o22.__N ? o22.__N[0] : o22.__[0], r22 = o22.t(t22, n3);
+    t22 !== r22 && (o22.__N = [r22, o22.__[1]], o22.__c.setState({}));
+  }], o22.__c = r2, !r2.u)) {
+    var f22 = function(n3, t22, r22) {
+      if (!o22.__c.__H)
+        return true;
+      var u3 = o22.__c.__H.__.filter(function(n4) {
+        return n4.__c;
+      });
+      if (u3.every(function(n4) {
+        return !n4.__N;
+      }))
+        return !c22 || c22.call(this, n3, t22, r22);
+      var i3 = false;
+      return u3.forEach(function(n4) {
+        if (n4.__N) {
+          var t3 = n4.__[0];
+          n4.__ = n4.__N, n4.__N = void 0, t3 !== n4.__[0] && (i3 = true);
+        }
+      }), !(!i3 && o22.__c.props === n3) && (!c22 || c22.call(this, n3, t22, r22));
+    };
+    r2.u = true;
+    var c22 = r2.shouldComponentUpdate, e22 = r2.componentWillUpdate;
+    r2.componentWillUpdate = function(n3, t22, r22) {
+      if (this.__e) {
+        var u3 = c22;
+        c22 = void 0, f22(n3, t22, r22), c22 = u3;
+      }
+      e22 && e22.call(this, n3, t22, r22);
+    }, r2.shouldComponentUpdate = f22;
+  }
+  return o22.__N || o22.__;
+}
+function p2(u22, i22) {
+  var o22 = d2(t2++, 3);
+  !l.__s && z2(o22.__H, i22) && (o22.__ = u22, o22.i = i22, r2.__H.__h.push(o22));
 }
 function F(n2, r22) {
   var u22 = d2(t2++, 7);
@@ -374,105 +519,76 @@ function z2(n2, t22) {
     return t3 !== n2[r22];
   });
 }
-
-// https://deno.land/x/bext@v0.1.2/utilities/predicates.ts
-var DENO = "DENO";
-var CHROME = "CHROME";
-var FIREFOX = "FIREFOX";
-function isBrowser(toCheck) {
-  let currentBrowser = CHROME;
-  try {
-    const userAgent = navigator?.userAgent || "";
-    if (/firefox/i.test(userAgent)) {
-      currentBrowser = FIREFOX;
-    } else if (/deno/i.test(userAgent)) {
-      currentBrowser = DENO;
-    }
-  } catch (_) {
-  }
-  if (!toCheck)
-    currentBrowser;
-  if (toCheck === CHROME && currentBrowser === CHROME)
-    return true;
-  if (toCheck === FIREFOX && currentBrowser === FIREFOX)
-    return true;
-  if (toCheck === DENO && currentBrowser === DENO)
-    return true;
-  return false;
-}
-function isDeno() {
-  return isBrowser(DENO);
-}
-function isFirefox() {
-  return isBrowser(FIREFOX);
+function B2(n2, t22) {
+  return "function" == typeof t22 ? t22(n2) : t22;
 }
 
-// https://deno.land/x/bext@v0.1.2/mock_browser/main.ts
-var listeners = {
-  addListener: () => {
-  },
-  removeListener: () => {
-  },
-  hasListener: () => {
-  }
-};
-var main_default = {
-  permissions: {
-    contains: () => {
-    },
-    request: () => {
-    }
-  },
-  runtime: {
-    onMessage: listeners,
-    openOptionsPage: () => {
-    },
-    lastError: {
-      message: ""
-    }
-  },
-  storage: {
-    sync: {
-      get: () => {
-      },
-      set: () => {
+// https://deno.land/std@0.138.0/fmt/colors.ts
+var { Deno } = globalThis;
+var noColor = typeof Deno?.noColor === "boolean" ? Deno.noColor : true;
+var ANSI_PATTERN = new RegExp(
+  [
+    "[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)",
+    "(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]))"
+  ].join("|"),
+  "g"
+);
+
+// components/header.tsx
+function Header(props) {
+  return /* @__PURE__ */ y("header", null, /* @__PURE__ */ y("h1", null, props.title));
+}
+
+// utils/storage_helpers.ts
+var { storage } = mod_exports.default;
+var KEY = "storage_key";
+function addStorageListener(callback) {
+  const updateStorage2 = (data) => callback(data[KEY]?.newValue || "");
+  storage.onChanged.addListener(updateStorage2);
+  return () => storage.onChanged.removeListener(updateStorage2);
+}
+function getStorage() {
+  return storage.sync.get(KEY).then((data) => data[KEY]);
+}
+function updateStorage(inputData) {
+  storage.sync.set({ [KEY]: inputData });
+}
+
+// components/home.tsx
+function Home(props) {
+  const [display, setDisplay] = h2("");
+  const [inputData, setInputData] = h2("");
+  p2(() => {
+    getStorage().then(setDisplay);
+    return addStorageListener(setDisplay);
+  }, [setDisplay]);
+  return /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h1", null, "It feels like home"), /* @__PURE__ */ y("a", {
+    href: "#options"
+  }, "go to options"), /* @__PURE__ */ y("h3", null, "Stored String: ", display), /* @__PURE__ */ y("input", {
+    placeholder: display,
+    onChange: T2((e3) => {
+      if (e3.target instanceof HTMLInputElement) {
+        setInputData(e3.target.value);
       }
-    }
-  },
-  tabs: {
-    onUpdated: listeners,
-    query: () => {
-    },
-    sendMessage: () => {
-    }
-  }
-};
-
-// https://deno.land/x/bext@v0.1.2/mod.ts
-var browserAPI = globalThis.chrome;
-if (isFirefox()) {
-  browserAPI = globalThis.browser;
-}
-if (isDeno()) {
-  browserAPI = main_default;
-}
-var mod_default = browserAPI;
-
-// source/components/options_button.tsx
-function OptionsButton() {
-  const onClick = T2(() => {
-    mod_default.runtime.openOptionsPage();
-  }, []);
-  return /* @__PURE__ */ y("button", {
-    onClick
-  }, "Options");
+    }, [setInputData])
+  }), /* @__PURE__ */ y("button", {
+    onClick: T2(() => updateStorage(inputData), [inputData])
+  }, "Update Storage"));
 }
 
-// source/popup.tsx
+// extension/options.tsx
 var mountPoint = document.getElementById("mount");
 if (mountPoint) {
   D(
-    /* @__PURE__ */ y("main", null, /* @__PURE__ */ y("h1", null, "HELLO!"), /* @__PURE__ */ y(OptionsButton, null)),
+    /* @__PURE__ */ y(App, null),
     mountPoint
   );
+}
+function App() {
+  return /* @__PURE__ */ y("main", null, /* @__PURE__ */ y(Header, {
+    title: "deco.cx browser extension"
+  }), /* @__PURE__ */ y(Home, {
+    default: true,
+    path: "/home"
+  }));
 }

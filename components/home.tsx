@@ -1,12 +1,11 @@
 /* @jsx h */
-import { h } from "preact";
-import { useCallback, useEffect, useState } from "preact/hooks";
+import { h, useCallback, useEffect, useState } from "../deps.ts";
 
 import {
   addStorageListener,
   getStorage,
   updateStorage,
-} from "../utilities/storage_helpers.ts";
+} from "../utils/storage_helpers.ts";
 
 export interface HomeProps {
   default?: boolean;

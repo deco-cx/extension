@@ -1,13 +1,12 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "deco.cx extension",
   "description": "Get detailed information on sites powered by deco.cx",
   "version": "0.0.1",
   "background": {
-    "scripts": [
-      "background.js"
-    ]
+    "service_worker": "deco_background.js"
   },
+  "options_page": "options.html",
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true,
@@ -19,6 +18,15 @@
   "optional_permissions": [
     "tabs"
   ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/16.png",
+      "32": "icons/32.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png"
+    }
+  },
   "browser_action": {
     "default_icon": "icons/128.png",
     "default_popup": "popup.html"
