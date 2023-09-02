@@ -458,5 +458,19 @@ var ANSI_PATTERN = new RegExp(
 // extension/deco_background.ts
 mod_exports.default.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   console.log("tabs.onUpdated", tabId, changeInfo, tab);
-  mod_exports.default.tabs.sendMessage(tabId, "check_deco_site");
+  mod_exports.default.tabs.sendMessage(tabId, "check_deco_site", (response) => {
+    console.log("response", response);
+    console.log(
+      "browser.default.browserAction",
+      mod_exports.default.browserAction
+    );
+    mod_exports.default.browserAction.setIcon({
+      path: {
+        16: "icons/deco-16.png",
+        32: "icons/deco-32.png",
+        48: "icons/deco-48.png",
+        128: "icons/deco-128.png"
+      }
+    });
+  });
 });

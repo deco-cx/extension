@@ -23,20 +23,7 @@ const browsers: BrowserManifests = {
     color: "\x1b[32m",
     omits: ["applications", "options_ui", "browser_action"],
   },
-  firefox: {
-    color: "\x1b[91m",
-    overrides: {
-      manifest_version: 2,
-      background: {
-        scripts: ["deco_background.js"],
-      },
-    },
-    omits: ["options_page", "host_permissions", "action"],
-  },
 };
-
-if (args._[0] === "chrome") delete browsers.firefox;
-if (args._[0] === "firefox") delete browsers.chrome;
 
 console.log("\x1b[37mPackager\n========\x1b[0m");
 

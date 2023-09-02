@@ -1,105 +1,3 @@
-var __defProp = Object.defineProperty;
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-
-// https://deno.land/x/bext@v0.1.2/mod.ts
-var mod_exports = {};
-__export(mod_exports, {
-  default: () => mod_default,
-  isBrowser: () => isBrowser,
-  isChrome: () => isChrome,
-  isDeno: () => isDeno,
-  isFirefox: () => isFirefox
-});
-
-// https://deno.land/x/bext@v0.1.2/utilities/predicates.ts
-var DENO = "DENO";
-var CHROME = "CHROME";
-var FIREFOX = "FIREFOX";
-function isBrowser(toCheck) {
-  let currentBrowser = CHROME;
-  try {
-    const userAgent = navigator?.userAgent || "";
-    if (/firefox/i.test(userAgent)) {
-      currentBrowser = FIREFOX;
-    } else if (/deno/i.test(userAgent)) {
-      currentBrowser = DENO;
-    }
-  } catch (_) {
-  }
-  if (!toCheck)
-    currentBrowser;
-  if (toCheck === CHROME && currentBrowser === CHROME)
-    return true;
-  if (toCheck === FIREFOX && currentBrowser === FIREFOX)
-    return true;
-  if (toCheck === DENO && currentBrowser === DENO)
-    return true;
-  return false;
-}
-function isChrome() {
-  return isBrowser(CHROME);
-}
-function isDeno() {
-  return isBrowser(DENO);
-}
-function isFirefox() {
-  return isBrowser(FIREFOX);
-}
-
-// https://deno.land/x/bext@v0.1.2/mock_browser/main.ts
-var listeners = {
-  addListener: () => {
-  },
-  removeListener: () => {
-  },
-  hasListener: () => {
-  }
-};
-var main_default = {
-  permissions: {
-    contains: () => {
-    },
-    request: () => {
-    }
-  },
-  runtime: {
-    onMessage: listeners,
-    openOptionsPage: () => {
-    },
-    lastError: {
-      message: ""
-    }
-  },
-  storage: {
-    sync: {
-      get: () => {
-      },
-      set: () => {
-      }
-    }
-  },
-  tabs: {
-    onUpdated: listeners,
-    query: () => {
-    },
-    sendMessage: () => {
-    }
-  }
-};
-
-// https://deno.land/x/bext@v0.1.2/mod.ts
-var browserAPI = globalThis.chrome;
-if (isFirefox()) {
-  browserAPI = globalThis.browser;
-}
-if (isDeno()) {
-  browserAPI = main_default;
-}
-var mod_default = browserAPI;
-
 // https://esm.sh/stable/preact@10.16.0/denonext/preact.development.mjs
 var n;
 var l;
@@ -540,7 +438,7 @@ function Header(props) {
 }
 
 // utils/storage_helpers.ts
-var { storage } = mod_exports.default;
+var { storage } = chrome;
 var KEY = "storage_key";
 function addStorageListener(callback) {
   const updateStorage2 = (data) => callback(data[KEY]?.newValue || "");
@@ -562,9 +460,7 @@ function Home(props) {
     getStorage().then(setDisplay);
     return addStorageListener(setDisplay);
   }, [setDisplay]);
-  return /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h1", null, "It feels like home"), /* @__PURE__ */ y("a", {
-    href: "#options"
-  }, "go to options"), /* @__PURE__ */ y("h3", null, "Stored String: ", display), /* @__PURE__ */ y("input", {
+  return /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h1", null, "deco.cx"), /* @__PURE__ */ y("h3", null, "Stored String: ", display), /* @__PURE__ */ y("input", {
     placeholder: display,
     onChange: T2((e3) => {
       if (e3.target instanceof HTMLInputElement) {
@@ -573,7 +469,7 @@ function Home(props) {
     }, [setInputData])
   }), /* @__PURE__ */ y("button", {
     onClick: T2(() => updateStorage(inputData), [inputData])
-  }, "Update Storage"));
+  }, "Update"));
 }
 
 // extension/options.tsx

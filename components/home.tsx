@@ -23,8 +23,7 @@ export default function Home(props: HomeProps) {
 
   return (
     <div>
-      <h1>It feels like home</h1>
-      <a href="#options">go to options</a>
+      <h1>deco.cx</h1>
       <h3>Stored String: {display}</h3>
       <input
         placeholder={display}
@@ -37,7 +36,7 @@ export default function Home(props: HomeProps) {
       <button
         onClick={useCallback(() => updateStorage(inputData), [inputData])}
       >
-        Update Storage
+        Update
       </button>
     </div>
   );

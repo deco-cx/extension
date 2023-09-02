@@ -1,9 +1,9 @@
 /* @jsx h */
-import { browser, h, useCallback } from "../deps.ts";
+import { h, useCallback } from "../deps.ts";
 
 export default function OptionsButton() {
   const onClick = useCallback(() => {
-    browser.default.runtime.openOptionsPage();
+    chrome.runtime.openOptionsPage();
   }, []);
 
   return (

@@ -7,6 +7,9 @@
       "dom.asynciterable",
       "esnext"
     ],
+    "types": [
+      "https://esm.sh/@types/chrome/index.d.ts"
+    ],
     "jsx": "react",
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment"
@@ -17,14 +20,6 @@
     }
   },
   "tasks": {
-    "start": "deno run -A build.ts --watch",
-    "test": "deno fmt && deno task check && deno task test:unit && deno lint",
-    "test:unit": "deno test -A extension",
-    "test:unit:update": "deno test -A -- --update extension",
-    "check": "deno task check:background && deno task check:content_script && deno task check:options && deno task check:popup",
-    "check:background": "deno check extension/deco_background.ts",
-    "check:content_script": "deno check extension/deco_content.ts",
-    "check:options": "deno check extension/options.tsx",
-    "check:popup": "deno check extension/popup.tsx"
+    "start": "deno run -A build.ts --watch"
   }
 }

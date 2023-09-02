@@ -7,7 +7,7 @@ const mountPoint = document.getElementById("mount");
 if (mountPoint) {
   render(
     <main>
-      <h1>deco.cx assistant</h1>
+      <h1>deco.cx</h1>
       <span>this site:</span>
       <OptionsButton />
     </main>,

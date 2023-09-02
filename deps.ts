@@ -1,4 +1,3 @@
-export * as browser from "https://deno.land/x/bext@v0.1.2/mod.ts";
 export * from "https://esm.sh/preact?dev";
 export type { Ref } from "https://esm.sh/preact?dev";
 export * from "https://esm.sh/preact/hooks?dev";

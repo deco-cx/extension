@@ -1,6 +1,4 @@
-import { browser } from "../deps.ts";
-
-const { storage } = browser.default;
+const { storage } = chrome;
 const KEY = "storage_key";
 
 interface Storage {
