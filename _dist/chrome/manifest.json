@@ -4,22 +4,20 @@
   "description": "Get detailed information on sites powered by deco.cx",
   "version": "0.0.1",
   "background": {
-    "service_worker": "deco_background.js"
+    "service_worker": "deco_worker.js"
   },
   "options_page": "options.html",
   "permissions": [
-    "storage"
-  ],
-  "optional_permissions": [
-    "tabs"
+    "storage",
+    "activeTab"
   ],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "icons/16.png",
-      "32": "icons/32.png",
-      "48": "icons/48.png",
-      "128": "icons/128.png"
+      "16": "icons/16-g.png",
+      "32": "icons/32-g.png",
+      "48": "icons/48-g.png",
+      "128": "icons/128-g.png"
     }
   },
   "icons": {

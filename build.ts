@@ -60,7 +60,7 @@ const builds = Object.keys(browsers).map(async (browserId) => {
     entryPoints: [
       "extension/options.tsx",
       "extension/deco_content.ts",
-      "extension/deco_background.ts",
+      "extension/deco_worker.ts",
       "extension/popup.tsx",
     ],
     outdir,

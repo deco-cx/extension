@@ -398,9 +398,33 @@ function OptionsButton() {
 
 // extension/popup.tsx
 var mountPoint = document.getElementById("mount");
-if (mountPoint) {
-  D(
-    /* @__PURE__ */ y("main", null, /* @__PURE__ */ y("h1", null, "deco.cx"), /* @__PURE__ */ y("span", null, "this site:"), /* @__PURE__ */ y(OptionsButton, null)),
-    mountPoint
-  );
-}
+var detectDecoSite = (tab) => {
+  return tab.url?.includes("deco.cx");
+};
+var setIcon = (active, tab) => {
+  chrome.action.setIcon({
+    path: {
+      "16": `icons/16${active ? "" : "-g"}.png`,
+      "32": `icons/32${active ? "" : "-g"}.png`,
+      "48": `icons/48${active ? "" : "-g"}.png`,
+      "128": `icons/128${active ? "" : "-g"}.png`
+    },
+    tabId: tab.id
+  });
+};
+chrome.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
+  const tab = tabs[0];
+  const isDeco = detectDecoSite(tab);
+  if (isDeco) {
+    console.log("deco.cx site detected!");
+    setIcon(true, tab);
+  } else {
+    setIcon(false, tab);
+  }
+  if (mountPoint) {
+    D(
+      /* @__PURE__ */ y("main", null, /* @__PURE__ */ y("h1", null, "deco.cx ", isDeco && "DETECTED!"), /* @__PURE__ */ y("span", null, !isDeco && "not detected"), /* @__PURE__ */ y(OptionsButton, null)),
+      mountPoint
+    );
+  }
+});
